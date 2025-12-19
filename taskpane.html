@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>图片反色助手</title>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <style>
+        /* 全局样式：模仿微软 Fluent Design */
+        body {
+            font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+            background-color: #f3f2f1;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* 卡片容器 */
+        .card {
+            background: white;
+            width: 100%;
+            max-width: 300px;
+            padding: 30px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        /* 标题 */
+        h2 {
+            margin-top: 0;
+            color: #333;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* 说明文字 */
+        p {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        /* 按钮样式 */
+        button {
+            background-color: #2b579a; /* Word 蓝 */
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+            transition: background 0.2s, transform 0.1s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        button:hover {
+            background-color: #1e3f75;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* 状态文字区域 */
+        #status {
+            margin-top: 15px;
+            font-size: 12px;
+            min-height: 20px;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        
+        .status-success { color: #107c10; background-color: #dff6dd; }
+        .status-error { color: #a80000; background-color: #fde7e9; }
+        .status-processing { color: #005a9e; }
+
+        /* 加载动画 (Spinner) */
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            animation: spin 1s linear infinite;
+            display: none; /* 默认隐藏 */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 底部版权 */
+        .footer {
+            margin-top: auto;
+            font-size: 11px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#2b579a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+            <polyline points="21 15 16 10 5 21"></polyline>
+        </svg>
+        
+        <h2>图片反色助手</h2>
+        <p>选中 Word 中的图片，点击下方按钮即可一键反转颜色（负片效果）。</p>
+        
+        <button id="runBtn">
+            <div class="spinner" id="spinner"></div>
+            <span id="btnText">开始反色</span>
+        </button>
+        
+        <div id="status"></div>
+    </div>
+
+    <div class="footer">Built for Tsinghua EE</div>
+
+    <script src="script.js"></script>
+
+    <script>
+        // 拦截 script.js 里的 updateStatus，增加样式处理
+        const originalUpdateStatus = window.updateStatus;
+        
+        // 重新定义 status 显示逻辑
+        window.updateStatus = function(message) {
+            const statusDiv = document.getElementById("status");
+            const spinner = document.getElementById("spinner");
+            const btn = document.getElementById("runBtn");
+            const btnText = document.getElementById("btnText");
+
+            statusDiv.innerText = message;
+            statusDiv.className = ""; // 清空旧样式
+
+            // 根据消息内容改变样式
+            if (message.includes("成功")) {
+                statusDiv.classList.add("status-success");
+                spinner.style.display = "none";
+                btn.disabled = false;
+                btnText.innerText = "开始反色";
+            } else if (message.includes("❌") || message.includes("报错") || message.includes("失败")) {
+                statusDiv.classList.add("status-error");
+                spinner.style.display = "none";
+                btn.disabled = false;
+                btnText.innerText = "重试";
+            } else if (message.includes("正在") || message.includes("⏳")) {
+                statusDiv.classList.add("status-processing");
+                spinner.style.display = "block";
+                btn.disabled = true;
+                btnText.innerText = "处理中...";
+            }
+        };
+    </script>
+</body>
+</html>
