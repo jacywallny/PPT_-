@@ -15,7 +15,7 @@
     <Host Name="Document" /> <Host Name="Presentation" /> </Hosts>
   
   <DefaultSettings>
-    <SourceLocation DefaultValue="https://jacywallny.github.io/office-image-inverter/taskpane.html" />
+    <SourceLocation DefaultValue="https://jacywallny.github.io/PPT_-/taskpane.html" />
   </DefaultSettings>
   
   <!-- PowerPoint 里导出图片 base64 需要较新的 API 集 -->
