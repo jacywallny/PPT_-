@@ -8,9 +8,9 @@
 
   <Id>7d9c1b3a-5e2f-4a8b-9c1d-1234567890ab</Id>
   <Version>1.0.0.0</Version>
-  <ProviderName>My Personal Tools</ProviderName>
+  <ProviderName>JacyWallny</ProviderName>
   <DefaultLocale>zh-CN</DefaultLocale>
-  <DisplayName DefaultValue="PPT 图片反色工具 (Fixed Path)" />
+  <DisplayName DefaultValue="PPT 图片反色 (GitHub Final)" />
   <Description DefaultValue="一键反转选中图片的颜色" />
 
   <Hosts>
@@ -18,7 +18,7 @@
   </Hosts>
 
   <DefaultSettings>
-    <SourceLocation DefaultValue="http://127.0.0.1:5500/test2/taskpane.html" />
+    <SourceLocation DefaultValue="https://jacywallny.github.io/PPT_invert/taskpane.html" />
   </DefaultSettings>
 
   <Permissions>ReadWriteDocument</Permissions>
@@ -69,13 +69,13 @@
 
     <Resources>
       <bt:Images>
-        <bt:Image id="Icon.16x16" DefaultValue="http://127.0.0.1:5500/test2/assets/icon-16.png"/>
-        <bt:Image id="Icon.32x32" DefaultValue="http://127.0.0.1:5500/test2/assets/icon-32.png"/>
-        <bt:Image id="Icon.80x80" DefaultValue="http://127.0.0.1:5500/test2/assets/icon-80.png"/>
+        <bt:Image id="Icon.16x16" DefaultValue="https://jacywallny.github.io/PPT_invert/assets/icon-16.png"/>
+        <bt:Image id="Icon.32x32" DefaultValue="https://jacywallny.github.io/PPT_invert/assets/icon-32.png"/>
+        <bt:Image id="Icon.80x80" DefaultValue="https://jacywallny.github.io/PPT_invert/assets/icon-80.png"/>
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812" />
-        <bt:Url id="Taskpane.Url" DefaultValue="http://127.0.0.1:5500/test2/taskpane.html" />
+        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://github.com/jacywallny/PPT_invert" />
+        <bt:Url id="Taskpane.Url" DefaultValue="https://jacywallny.github.io/PPT_invert/taskpane.html" />
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="Tab.Label" DefaultValue="我的工具箱" />
