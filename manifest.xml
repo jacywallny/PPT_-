@@ -1,31 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<OfficeApp 
-  xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-  xsi:type="TaskPaneApp">
-  
-  <Id>c3049539-7b3b-485c-9c3b-1e5436666666</Id>
+<OfficeApp
+          xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+          xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+          xsi:type="TaskPaneApp">
+
+  <Id>7d9c1b3a-5e2f-4a8b-9c1d-1234567890ab</Id>
   <Version>1.0.0.0</Version>
-  <ProviderName>MyName</ProviderName>
+  <ProviderName>My Personal Tools</ProviderName>
   <DefaultLocale>zh-CN</DefaultLocale>
-  <DisplayName DefaultValue="图片反色助手" />
-  <Description DefaultValue="一键将图片反色" />
-  
+  <DisplayName DefaultValue="PPT 图片反色工具 (Fixed Path)" />
+  <Description DefaultValue="一键反转选中图片的颜色" />
+
   <Hosts>
-    <Host Name="Document" /> <Host Name="Presentation" /> </Hosts>
-  
+    <Host Name="Presentation" />
+  </Hosts>
+
   <DefaultSettings>
-    <SourceLocation DefaultValue="https://jacywallny.github.io/PPT_-/taskpane.html" />
+    <SourceLocation DefaultValue="http://127.0.0.1:5500/test2/taskpane.html" />
   </DefaultSettings>
-  
-  <!-- PowerPoint 里导出图片 base64 需要较新的 API 集 -->
-  <Requirements>
-    <Sets DefaultMinVersion="1.1">
-      <Set Name="PowerPointApi" MinVersion="1.10" />
-    </Sets>
-  </Requirements>
 
   <Permissions>ReadWriteDocument</Permissions>
 
-</OfficeApp>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Presentation">
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="Taskpane.Button.Title"/>
+            <Description resid="Taskpane.Button.Tooltip"/>
+            <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/>
+          </GetStarted>
+          <FunctionFile resid="Taskpane.Url" />
+          
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <CustomTab id="TabMyTools">
+              <Group id="GroupImageTools">
+                <Label resid="Group.Label" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16" />
+                  <bt:Image size="32" resid="Icon.32x32" />
+                  <bt:Image size="80" resid="Icon.80x80" />
+                </Icon>
+                <Control xsi:type="Button" id="TaskpaneButton">
+                  <Label resid="Taskpane.Button.Title" />
+                  <Supertip>
+                    <Title resid="Taskpane.Button.Title" />
+                    <Description resid="Taskpane.Button.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>ButtonId1</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Url" />
+                  </Action>
+                </Control>
+              </Group>
+              <Label resid="Tab.Label" />
+            </CustomTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
 
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon.16x16" DefaultValue="http://127.0.0.1:5500/test2/assets/icon-16.png"/>
+        <bt:Image id="Icon.32x32" DefaultValue="http://127.0.0.1:5500/test2/assets/icon-32.png"/>
+        <bt:Image id="Icon.80x80" DefaultValue="http://127.0.0.1:5500/test2/assets/icon-80.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812" />
+        <bt:Url id="Taskpane.Url" DefaultValue="http://127.0.0.1:5500/test2/taskpane.html" />
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="Tab.Label" DefaultValue="我的工具箱" />
+        <bt:String id="Group.Label" DefaultValue="图片处理" />
+        <bt:String id="Taskpane.Button.Title" DefaultValue="打开反色面板" />
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="Taskpane.Button.Tooltip" DefaultValue="点击打开侧边栏进行图片处理" />
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>
