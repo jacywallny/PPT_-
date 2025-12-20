@@ -3,29 +3,36 @@
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <title>PPT 图片反色</title>
+    <title>PPT 图片反色 (剪贴板版)</title>
     <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
     <style>
         body { font-family: "Segoe UI", sans-serif; padding: 15px; background-color: #f3f2f1; }
-        .container { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .container { display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        /* 按钮样式稍微加高一点 */
         button {
-            width: 100%; padding: 10px; background-color: #0078d4; color: white;
-            border: none; cursor: pointer; font-size: 14px;
+            width: 100%; padding: 15px; background-color: #0078d4; color: white;
+            border: none; cursor: pointer; font-size: 16px; border-radius: 4px; font-weight: bold;
         }
         button:hover { background-color: #106ebe; }
-        #status { margin-top: 10px; color: #666; font-size: 12px; }
+        #status { margin-top: 10px; color: #666; font-size: 13px; text-align: center; white-space: pre-wrap;}
+        .guide { font-size: 14px; color: #333; background: #e6f2ff; padding: 10px; border-radius: 4px;}
     </style>
 </head>
 <body>
     <div class="container">
-        <h3>图片处理助手(新版 v2)</h3>
-        <p>请选中一张图片，然后点击下方按钮。</p>
-        <button id="invert-btn">🎨 一键反色</button>
-        <div id="status">准备就绪</div>
+        <h3>📋 剪贴板图片反色助手</h3>
+        
+        <div class="guide">
+            <strong>使用步骤：</strong><br>
+            1. 在 PPT 中选中复杂的图，按下 <strong>Ctrl + C</strong> (复制)。<br>
+            2. 点击下方按钮。
+        </div>
+
+        <button id="paste-btn">📋 粘贴并反色</button>
+        
+        <div id="status">准备就绪，请先复制图片...</div>
     </div>
 
-   <script src="script.js?v=2"></script>
+    <script src="script.js?v=3"></script>
 </body>
 </html>
-
-
